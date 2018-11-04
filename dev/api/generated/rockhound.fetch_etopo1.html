@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
     
-        <title>rockhound.test &mdash; rockhound</title>
+        <title>rockhound.fetch_etopo1 &mdash; rockhound</title>
     
 
 
@@ -35,8 +35,8 @@
   <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="References" href="../../references.html" />
-    <link rel="prev" title="rockhound.fetch_etopo1" href="rockhound.fetch_etopo1.html" />
+    <link rel="next" title="rockhound.test" href="rockhound.test.html" />
+    <link rel="prev" title="API Reference" href="../index.html" />
     
     <script src="../../_static/require.js"></script>
 
@@ -98,11 +98,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Installing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../gallery/index.html">Models and Datasets</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="rockhound.fetch_etopo1.html">rockhound.fetch_etopo1</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html#utilities">Utilities</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">rockhound.test</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">rockhound.fetch_etopo1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#examples-using-rockhound-fetch-etopo1">Examples using <code class="docutils literal notranslate"><span class="pre">rockhound.fetch_etopo1</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#utilities">Utilities</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../references.html">References</a></li>
@@ -178,7 +178,7 @@
         
           <li><a href="../index.html">API Reference</a> &raquo;</li>
         
-      <li>rockhound.test</li>
+      <li>rockhound.fetch_etopo1</li>
     
     
     <li class="source-link">
@@ -186,7 +186,7 @@
             
                 
                 
-                <a href="https://github.com/fatiando/rockhound/issues/new?title=Suggested%20improvement%20for%20api/generated/rockhound.test&body=Please%20describe%20what%20could%20be%20improved%20about%20this%20page%20or%20the%20typo/mistake%20that%20you%20found%3A"
+                <a href="https://github.com/fatiando/rockhound/issues/new?title=Suggested%20improvement%20for%20api/generated/rockhound.fetch_etopo1&body=Please%20describe%20what%20could%20be%20improved%20about%20this%20page%20or%20the%20typo/mistake%20that%20you%20found%3A"
                    class="fa fa-github"> Improve this page</a>
             
         
@@ -201,40 +201,42 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="rockhound-test">
-<h1>rockhound.test<a class="headerlink" href="#rockhound-test" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="rockhound-fetch-etopo1">
+<h1>rockhound.fetch_etopo1<a class="headerlink" href="#rockhound-fetch-etopo1" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
-<dt id="rockhound.test">
-<code class="descclassname">rockhound.</code><code class="descname">test</code><span class="sig-paren">(</span><em>doctest=True</em>, <em>verbose=True</em>, <em>coverage=False</em>, <em>figures=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/rockhound.html#test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rockhound.test" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run the test suite.</p>
-<p>Uses <a class="reference external" href="http://pytest.org/">py.test</a> to discover and run the tests.</p>
+<dt id="rockhound.fetch_etopo1">
+<code class="descclassname">rockhound.</code><code class="descname">fetch_etopo1</code><span class="sig-paren">(</span><em>version</em>, <em>load=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/rockhound/etopo1.html#fetch_etopo1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rockhound.fetch_etopo1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch the ETOPO1 global relief model.</p>
+<p>ETOPO1 is a 1 arc-minute global relief model of Earth’s surface that integrates land
+topography and ocean bathymetry <a class="reference internal" href="../../references.html#amanteeakins2009" id="id1">[AmanteEakins2009]</a>. It’s available in two versions:
+“Ice Surface” (top of Antarctic and Greenland ice sheets) and “Bedrock” (base of the
+ice sheets). Each grid is in a separate gzipped netCDF file (grid-line registered
+version). The grids are loaded into <a class="reference external" href="http://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.10.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> objects.</p>
+<p>If the files aren’t already in your data directory, they will be downloaded
+automatically (which may take a while). Each grid is approximately 380Mb.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>doctest</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
-<dd><p class="first last">If <code class="docutils literal notranslate"><span class="pre">True</span></code>, will run the doctests as well (code examples that start
-with a <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> in the docs).</p>
+<dt><strong>version</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Which version of the dataset to load. Can be <code class="docutils literal notranslate"><span class="pre">&quot;ice&quot;</span></code> for the ice surface
+version, <code class="docutils literal notranslate"><span class="pre">'bedrock'</span></code> for the bedrock version.</p>
 </dd>
-<dt><strong>verbose</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
-<dd><p class="first last">If <code class="docutils literal notranslate"><span class="pre">True</span></code>, will print extra information during the test run.</p>
+<dt><strong>load</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd><p class="first last">Wether to load the data into an <a class="reference external" href="http://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.10.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> or just return the
+path to the downloaded data.</p>
 </dd>
-<dt><strong>coverage</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
-<dd><p class="first last">If <code class="docutils literal notranslate"><span class="pre">True</span></code>, will run test coverage analysis on the code as well.
-Requires <code class="docutils literal notranslate"><span class="pre">pytest-cov</span></code>.</p>
-</dd>
-<dt><strong>figures</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
-<dd><p class="first last">If <code class="docutils literal notranslate"><span class="pre">True</span></code>, will test generated figures against saved baseline
-figures.  Requires <code class="docutils literal notranslate"><span class="pre">pytest-mpl</span></code> and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
+<dt><strong>kwargs</strong></dt>
+<dd><p class="first last">Keyword arguments will be forwarded to the <a class="reference external" href="http://xarray.pydata.org/en/stable/generated/xarray.open_dataset.html#xarray.open_dataset" title="(in xarray v0.10.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_dataset</span></code></a> function
+that loads the grid into memory.</p>
 </dd>
 </dl>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>AssertionError</strong></dt>
-<dd><p class="first last">If pytest returns a non-zero error code indicating that some tests have
-failed.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>grid</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><a class="reference external" href="http://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v0.10.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> or str</span></dt>
+<dd><p class="first last">The loaded grid or the file path to the downloaded data.</p>
 </dd>
 </dl>
 </td>
@@ -243,7 +245,14 @@ failed.</p>
 </table>
 </dd></dl>
 
-<div style='clear:both'></div></div>
+<div class="section" id="examples-using-rockhound-fetch-etopo1">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">rockhound.fetch_etopo1</span></code><a class="headerlink" href="#examples-using-rockhound-fetch-etopo1" title="Permalink to this headline">¶</a></h2>
+<div class="sphx-glr-thumbcontainer" tooltip="ETOPO1 is a 1 arc-minute global relief model of Earth&#x27;s surface that integrates land topography..."><div class="figure" id="id2">
+<img alt="../../_images/sphx_glr_etopo1_thumb.png" src="../../_images/sphx_glr_etopo1_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../../gallery/etopo1.html#sphx-glr-gallery-etopo1-py"><span class="std std-ref">ETOPO1 Earth Relief</span></a></span></p>
+</div>
+</div><div style='clear:both'></div></div>
+</div>
 
 
            </div>
@@ -253,10 +262,10 @@ failed.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../references.html" class="btn btn-neutral float-right" title="References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="rockhound.test.html" class="btn btn-neutral float-right" title="rockhound.test" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="rockhound.fetch_etopo1.html" class="btn btn-neutral" title="rockhound.fetch_etopo1" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../index.html" class="btn btn-neutral" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
